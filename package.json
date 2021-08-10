@@ -1,0 +1,23 @@
+{
+  "name": "onboard-javascript",
+  "version": "1.0.0",
+  "description": "This is a JavaScript project for all new developers to complete before venturing into our web frontend codebase.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leomoko/onboard-javascript.git"
+  },
+  "author": "leo moko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leomoko/onboard-javascript/issues"
+  },
+  "homepage": "https://github.com/leomoko/onboard-javascript#readme",
+  "dependencies": {
+    "typescript": "^4.3.5"
+  }
+}
