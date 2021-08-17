@@ -21,13 +21,10 @@ div{
 tr:nth-child(even) {
     background-color: #ececec;
 }
-
-th,td {
-    border: 0.1px solid rgb(228, 228, 228);
-  }
 th , td{
     height: 58px;
     text-align: center;
+    border: 0.1px solid rgb(228, 228, 228);
 }
 td {
     text-align: center;
@@ -46,8 +43,7 @@ button {
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    cursor: pointer;
-    
+    cursor: pointer;   
 }
 footer{
 	text-align: center;
