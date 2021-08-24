@@ -4,7 +4,7 @@
 		"strict": true,
 		"strictNullChecks": false,
 		"noImplicitThis": true,
-		"noImplicitAny": true,
+		"noImplicitAny": false,
 		"noImplicitReturns": true,
 		"module": "es2015",
 		"moduleResolution": "node",
