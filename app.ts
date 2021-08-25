@@ -109,18 +109,7 @@ function createTable(records: any[]) {
 
 function Search(e) {
   let inputValue = (<HTMLInputElement>document.getElementById("search")).value;
-  // let $table = $("table tr").toArray();
 
-  //search for record on current record view
-  // if (parseInt(inputValue) >= startIndex &&  parseInt(inputValue) <= endIndex){
-  //     for (let record of $table) {
-  //         let td = record.getElementsByTagName("td")[0];
-  //          if (td) {
-  //              let txtValue = td.textContent || td.innerText;
-  //              record.style.display =  txtValue.indexOf(inputValue)  > -1 ? "" : "none";
-  //          }
-  //      }
-  //     }else {
   if (inputValue === "") {
     inputValue = startIndex.toString();
     loadGrid(parseInt(inputValue));
