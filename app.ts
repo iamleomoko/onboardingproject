@@ -27,8 +27,9 @@ function loadGrid(start: number) {
   if (startIndex >= recordCount) {
     startIndex = recordCount - calRowPerView();
   }
-  if (startIndex === recordCount - 1) {
-    startIndex = startIndex - calRowPerView();
+  if (
+    startIndex >= recordCount - calRowPerView() && startIndex <= recordCount - 1) {
+    startIndex = recordCount - (calRowPerView() + 1);
   }
   //creating header and search input field
   document.getElementById("header").innerHTML = `<input type="number" 
@@ -36,6 +37,9 @@ function loadGrid(start: number) {
 
   //clearing current table
   document.getElementById("divTable").innerHTML = "";
+    
+  // $("table").empty()
+
   //calling Records
   getRecords(startIndex, endIndex);
 }
@@ -76,7 +80,6 @@ function createTable(records: any[]) {
   // let table = this.$el("table");
   let tableBody = document.createElement("tbody");
   let tableHead = document.createElement("thead");
-
   //creating table columns
   for (let c = 0; c < columnHeaders.length; c++) {
     tableHead
@@ -96,8 +99,11 @@ function createTable(records: any[]) {
       tableRow
         .appendChild(document.createElement("td"))
         .appendChild(document.createTextNode(records[a][b]));
+
+      tableBody.appendChild(tableRow);
     }
   }
+  table.appendChild(tableBody);
   //Adding table to table div ID = divTable
   document.getElementById("divTable").appendChild(table);
   //Adding buttons to to the footer tag
