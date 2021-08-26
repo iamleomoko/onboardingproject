@@ -3,10 +3,11 @@ let columnHeaders: any[];
 let resizeTimer: number;
 
 window.onload = () => getRecordCount();
-
+ 
 //calculating how many records to display based on widow size
 function calRowPerView() {
-  let x = Math.floor((window.innerHeight - 250) / 39);
+  let x = Math.floor((window.innerHeight - 245) / 34);
+  
   if (x < 0) {
     alert("Window screen to small to display records , Resize window");
   }
@@ -27,18 +28,12 @@ function loadGrid(start: number) {
   if (startIndex >= recordCount) {
     startIndex = recordCount - calRowPerView();
   }
-  if (
-    startIndex >= recordCount - calRowPerView() && startIndex <= recordCount - 1) {
+  if (startIndex >= recordCount - calRowPerView() && startIndex <= recordCount - 1) {
     startIndex = recordCount - (calRowPerView() + 1);
   }
   //creating header and search input field
   document.getElementById("header").innerHTML = `<input type="number" 
     id="search" onfocusout="Search(event)" placeholder="Search : Enter ID">`;
-
-  //clearing current table
-  document.getElementById("divTable").innerHTML = "";
-    
-  // $("table").empty()
 
   //calling Records
   getRecords(startIndex, endIndex);
@@ -76,7 +71,10 @@ function getRecords(start: number, end: number) {
 
 //building table
 function createTable(records: any[]) {
-  let table = document.createElement("table");
+ //clearing current table
+  document.getElementById("divTable").innerHTML = "";
+  
+ let table = document.createElement("table");
   // let table = this.$el("table");
   let tableBody = document.createElement("tbody");
   let tableHead = document.createElement("thead");
@@ -122,7 +120,6 @@ function Search(e) {
   } else {
     loadGrid(parseInt(inputValue));
   }
-  // }
 }
 
 //next button function
