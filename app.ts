@@ -4,7 +4,7 @@ let resizeTimer: number;
 
 window.onload = () => getRecordCount();
  
-//calculating how many records to display based on widow size
+// calculating how many records to display based on widow size
 function calRowPerView() {
   let x = Math.floor((window.innerHeight - 245) / 34);
   
@@ -31,16 +31,16 @@ function loadGrid(start: number) {
   if (startIndex >= recordCount - calRowPerView() && startIndex <= recordCount - 1) {
     startIndex = recordCount - (calRowPerView() + 1);
   }
-  //creating header and search input field
+  // creating header and search input field
   document.getElementById("header").innerHTML = `<input type="number" 
     id="search" onfocusout="Search(event)" placeholder="Search : Enter ID">`;
 
-  //calling Records
+  // calling Records
   getRecords(startIndex, endIndex);
 }
 
+ // calling record count from the api, full url http://localhost:2050/recordcount
 function getRecordCount() {
-  //calling record count from the api, full url http://localhost:2050/recordcount
   $.get("/recordCount", function (numberRecords) {
     recordCount = numberRecords;
     getColumnHeaders();
@@ -49,8 +49,8 @@ function getRecordCount() {
   });
 }
 
+// calling column header from the api, full url http://localhost:2050/columns
 function getColumnHeaders() {
-  //calling column header from the api, full url http://localhost:2050/columns
   $.get("/columns", function (headers) {
     columnHeaders = JSON.parse(headers);
     loadGrid(0);
@@ -59,8 +59,8 @@ function getColumnHeaders() {
   });
 }
 
+// calling records from the api, full url http://localhost:2050/records?from=1&to=3
 function getRecords(start: number, end: number) {
-  //calling records from the api, full url http://localhost:2050/records?from=1&to=3
   $.get("/records?from=" + start + "&to=" + end, function (rec) {
     //creating table grid with records returned by the api
     createTable(JSON.parse(rec));
@@ -69,16 +69,15 @@ function getRecords(start: number, end: number) {
   });
 }
 
-//building table
+// building table
 function createTable(records: any[]) {
- //clearing current table
+ // clearing current table
   document.getElementById("divTable").innerHTML = "";
   
- let table = document.createElement("table");
-  // let table = this.$el("table");
+  let table = document.createElement("table");
   let tableBody = document.createElement("tbody");
   let tableHead = document.createElement("thead");
-  //creating table columns
+  // creating table columns
   for (let c = 0; c < columnHeaders.length; c++) {
     tableHead
       .appendChild(document.createElement("th"))
@@ -86,7 +85,7 @@ function createTable(records: any[]) {
   }
   table.appendChild(tableHead);
 
-  //creating table rows
+  // creating table rows
   for (let a = 0; a < records.length; a++) {
     let tableRow = document.createElement("tr");
     table.appendChild(tableRow);
@@ -97,14 +96,13 @@ function createTable(records: any[]) {
       tableRow
         .appendChild(document.createElement("td"))
         .appendChild(document.createTextNode(records[a][b]));
-
       tableBody.appendChild(tableRow);
     }
   }
   table.appendChild(tableBody);
-  //Adding table to table div ID = divTable
+  // Adding table to table div ID = divTable
   document.getElementById("divTable").appendChild(table);
-  //Adding buttons to to the footer tag
+  // Adding buttons to to the footer tag
   document.getElementById(
     "footer"
   ).innerHTML = `<button onclick="backButton()">Back</button> 
@@ -117,12 +115,12 @@ function Search(e) {
   if (inputValue === "") {
     inputValue = startIndex.toString();
     loadGrid(parseInt(inputValue));
-  } else {
+  } 
     loadGrid(parseInt(inputValue));
-  }
+  
 }
 
-//next button function
+// next button function
 function nextButton() {
   if (endIndex < recordCount - 1) {
     loadGrid(endIndex + 1);
@@ -131,13 +129,13 @@ function nextButton() {
   }
 }
 
-//back button function
+// back button function
 function backButton() {
   startIndex -= calRowPerView();
   loadGrid(startIndex - 1);
 }
 
-//update table gride size based on current window size
+// update table gride size based on current window size
 window.onresize = () => {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(function () {
