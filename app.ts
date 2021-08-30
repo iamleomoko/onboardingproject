@@ -108,8 +108,7 @@ function Search(e) {
     inputValue = startIndex.toString();
     loadGrid(parseInt(inputValue));
   } 
-    loadGrid(parseInt(inputValue));
-  
+    loadGrid(parseInt(inputValue));  
 }
 
 // next button function
