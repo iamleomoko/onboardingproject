@@ -1,6 +1,6 @@
 let recordCount: number, startIndex: number, endIndex: number;
 let columnHeaders: any[];
-let resizeTimer: number;
+let resizeTimer: number , rowsPerView : number;
 
 window.onload = () => getRecordCount();
  
@@ -15,21 +15,22 @@ function calRowPerView() {
 }
 
 function loadGrid(start: number) {
+  rowsPerView = calRowPerView();
   startIndex = start;
-  endIndex = start + calRowPerView();
+  endIndex = start + rowsPerView;
 
   if (startIndex < 0) {
     startIndex = 0;
-    endIndex = calRowPerView();
+    endIndex = rowsPerView;
   }
   if (endIndex >= recordCount) {
     endIndex = recordCount - 1;
   }
   if (startIndex >= recordCount) {
-    startIndex = recordCount - calRowPerView();
+    startIndex = recordCount - rowsPerView;
   }
-  if (startIndex >= recordCount - calRowPerView() && startIndex <= recordCount - 1) {
-    startIndex = recordCount - (calRowPerView() + 1);
+  if (startIndex >= recordCount - rowsPerView && startIndex <= recordCount - 1) {
+    startIndex = recordCount - (rowsPerView + 1);
   }
   // calling Records
   getRecords(startIndex, endIndex);
@@ -122,7 +123,7 @@ function nextButton() {
 
 // back button function
 function backButton() {
-  startIndex -= calRowPerView();
+  startIndex -= rowsPerView;
   loadGrid(startIndex - 1);
 }
 
@@ -130,7 +131,6 @@ function backButton() {
 window.onresize = () => {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(function () {
-    calRowPerView();
     loadGrid(startIndex);
   }, 200);
 };
