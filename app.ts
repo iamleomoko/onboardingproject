@@ -31,10 +31,6 @@ function loadGrid(start: number) {
   if (startIndex >= recordCount - calRowPerView() && startIndex <= recordCount - 1) {
     startIndex = recordCount - (calRowPerView() + 1);
   }
-  // creating header and search input field
-  document.getElementById("header").innerHTML = `<input type="number" 
-    id="search" onfocusout="Search(event)" placeholder="Search : Enter ID">`;
-
   // calling Records
   getRecords(startIndex, endIndex);
 }
@@ -102,11 +98,6 @@ function createTable(records: any[]) {
   table.appendChild(tableBody);
   // Adding table to table div ID = divTable
   document.getElementById("divTable").appendChild(table);
-  // Adding buttons to to the footer tag
-  document.getElementById(
-    "footer"
-  ).innerHTML = `<button onclick="backButton()">Back</button> 
-    <button onclick="nextButton()">Next</button>`;
 }
 
 function Search(e) {

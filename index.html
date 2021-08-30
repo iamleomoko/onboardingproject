@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <script
+      type="text/javascript"
+      charset="utf-8"
+      src="third_party/jquery-2.0.3.min.js"
+    ></script>
+    <script type="text/javascript" src="app.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- creating header and search input field -->
+    <header id="header">
+      <input
+        type="number"
+        id="search"
+        onfocusout="Search(event)"
+        placeholder="Search : Enter ID"
+      />
+    </header>
 
-<head>
-	<script type="text/javascript" charset="utf-8" src="third_party/jquery-2.0.3.min.js"></script>
-	<script type="text/javascript" src="app.js"></script>
-	<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-	
-	<header id="header"></header>
-	
-	<div class="grid" id="divTable">
+    <div class="grid" id="divTable"></div>
 
-	</div>
-	<footer id="footer"></footer>
-</body>
-
+    <!-- adding buttons to to the footer tag-->
+    <footer id="footer">
+      <button onclick="backButton()">Back</button>
+      <button onclick="nextButton()">Next</button>
+    </footer>
+  </body>
 </html>
-
