@@ -2,20 +2,21 @@ let recordCount: number, startIndex: number, endIndex: number;
 let columnHeaders: any[];
 let resizeTimer: number , rowsPerView : number;
 
-window.onload = () => getRecordCount();
- 
+window.onload = function(){
+  getRecordCount();
+  calRowPerView();
+}
+
 // calculating how many records to display based on widow size
 function calRowPerView() {
-  let x = Math.floor((window.innerHeight - 245) / 34);
+  rowsPerView = Math.floor((window.innerHeight - 245) / 34);
   
-  if (x < 0) {
+  if (rowsPerView < 0) {
     alert("Window screen to small to display records , Resize window");
   }
-  return x;
 }
 
 function loadGrid(start: number) {
-  rowsPerView = calRowPerView();
   startIndex = start;
   endIndex = start + rowsPerView;
 
@@ -130,6 +131,7 @@ function backButton() {
 window.onresize = () => {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(function () {
+    calRowPerView();
     loadGrid(startIndex);
-  }, 200);
+  }, 100);
 };
